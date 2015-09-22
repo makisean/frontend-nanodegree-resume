@@ -11,8 +11,6 @@ console.log(i);
 
 var skills = ["ppc", "seo", "cro", "javascript"];
 
-
-
 var bio = {
 	"name" : "Sean" ,
 	"role" : "Web Developer" ,
@@ -21,8 +19,6 @@ var bio = {
 	"welcomeMessage" : "Hi, I'm Sean and learning" ,
 	"skills" : skills
 };
-
-
 
 var work = {
 	"jobs" : [
@@ -73,14 +69,35 @@ var projects = {
 
 	"projects" : [
 		{
-			"name" : "Best Paintball Reviews"
+			"name" : "Best Paintball Reviews",
+			"date" : "2012-2015",
+			"description": "affiliate site and dropshipping ecommerce"
 		},
 		{
-			"name" : "Skydiving Library"
+			"name" : "Skydiving Library",
+			"date" : "2012-2015",
+			"description": "affiliate site and dropshipping ecommerce"
 		}
 	]};
 
+projects.display = function(){
+//append all project info to the projects section
+	for(project in projects.projects){
 
+	 	$("#projects").append(HTMLprojectStart);
+
+	 	var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].name);
+	 	var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[project].date);
+	 	var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
+
+	 	$(".project-entry:last").append(formattedProjectTitle);
+	 	$(".project-entry:last").append(formattedProjectDates);
+	 	$(".project-entry:last").append(formattedProjectDescription);
+	}
+
+};
+
+projects.display();
 
 $("#main").append(bio.name);
 $("#main").append(bio.role);
@@ -138,3 +155,22 @@ $(document).click(function(loc) {
 
   logClicks(x,y);
 });
+
+$("#main").append(internationalizeButton);
+
+function inName(fullname){
+
+	var name = fullname.split(" ");
+
+var formattedFirstName = name[0].slice(0,1).toUpperCase() + name[0].slice(1).toLowerCase();
+var formattedLastName = name[1].toUpperCase();
+
+var formattedFullName = formattedFirstName + " " + formattedLastName;
+
+return formattedFullName;
+
+}
+
+var myname = "Sean Maki";
+
+$("#mapDiv").append(googleMap);
